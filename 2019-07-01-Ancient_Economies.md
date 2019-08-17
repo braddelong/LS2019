@@ -1,0 +1,253 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# <font color=\"880000\">Ancient Economies: A Malthusian Model</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## <font color=\"880000\"> The Basic Setup </font>\n",
+    "\n",
+    "The basic setup model has production (or output) per worker $ Y $ as a function of the capital stock $ K $, the labor force $ L $, the efficiency of labor $ E $, and the decreasing-returns parameter $ \\alpha $:\n",
+    "\n",
+    ">(1) $ Y = K^{\\alpha}(EL)^{1-\\alpha} $ :: production\n",
+    "\n",
+    ">(2) $ \\ln(Y) = \\alpha\\ln(K) + (1-\\alpha)\\left(\\ln(E)+\\ln(L)\\right) $ :: log production\n",
+    "\n",
+    "Growth rates of the capital stock, the labor force, the efficiency of labor, and of production as functions of the savings-investment rate $ s $, the population and labor force growth rate $ n $, the efficiency-of-labor growth rate $ g $, and the depreciation rate $ \\delta $:\n",
+    "\n",
+    ">(3) $ \\frac{dK/dt}{K} = \\frac{d\\ln(K)}{dt} = g_k = \\frac{sY}{K} - \\delta $ :: the proportional rate of growth of the capital stock\n",
+    "\n",
+    ">(4) $ \\frac{dL/dt}{L} = \\frac{d\\ln(L)}{dt} = n $ :: the proportional rate of growth of the labor force and population\n",
+    "\n",
+    ">(5) $ \\frac{dE/dt}{E} = \\frac{d\\ln(E)}{dt}  = g $ :: the proportional rate of growth of the efficiency of labor\n",
+    "\n",
+    ">(6) $ \\frac{d\\ln(Y)}{dt} = g_{n+y} = \\alpha g_k + (1-\\alpha)n + (1-\\alpha)g  $ :: the proportional rate of growth of total production\n",
+    "\n",
+    "And define the capital-output ratio:\n",
+    "\n",
+    ">(7) $ \\kappa = \\frac{K}{Y} $\n",
+    "\n",
+    ">(8) $ \\ln(\\kappa) = \\ln(K) - \\ln(Y) $\n",
+    "\n",
+    ">(9) $ \\frac{d\\ln(\\kappa)}{dt} = g_\\kappa = g_k - g_y $ :: proportional growth rate of the capital-output ratio\n",
+    "\n",
+    "&nbsp;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### <font color=\"000088\"> Determining the Equilibrium Capital-Output Ratio $ \\kappa^* $ </font>\n",
+    "\n",
+    "Now fix the parameters $ \\alpha, \\beta, s, h $, and look for a situation in which $ g_\\kappa = 0 $: in which the capital stock $ K $ and production $ Y $ are growing at the same rate so that the capital-output ratio $ g_\\kappa $ is constant.\n",
+    "\n",
+    "Starting from (9) and substituting:\n",
+    "\n",
+    ">(10) $ g_\\kappa = g_k - \\left( \\alpha g_k + (1-\\alpha)n + (1-\\alpha)g \\right)   $\n",
+    "\n",
+    ">(11) $ g_\\kappa - g_{y+n} = (1-\\alpha)\\left( g_k - n - g \\right) $\n",
+    "\n",
+    ">(12) $ g_\\kappa = (1-\\alpha)\\left( \\frac{sY}{K} - \\delta - n - g \\right) $\n",
+    "\n",
+    ">(13) $ n + g + \\delta = \\frac{sY}{K} $ whenever $ g_\\kappa = 0 $\n",
+    "\n",
+    ">(14) $ \\kappa = \\frac{K}{Y} = \\frac{s}{n + g + \\delta} $ whenever $ g_\\kappa = 0 $\n",
+    "\n",
+    "So we define the _steady-state growth equilibrium_ capital-output ratio:\n",
+    "\n",
+    ">(15) $ \\kappa^*_{[s,n,g,\\delta]} = \\left( \\frac{K}{Y} \\right)^* = \\frac{s}{n + g + \\delta} $\n",
+    "\n",
+    "&nbsp;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### <font color=\"000088\"> Determining Steady-State Growth-Path Production per Worker </font>\n",
+    "\n",
+    "Recall 2:\n",
+    "\n",
+    ">(2) $ \\ln(Y) = \\alpha\\ln(K) + (1-\\alpha)\\left(\\ln(E)+\\ln(L)\\right) $\n",
+    "\n",
+    "from that derive:\n",
+    "\n",
+    ">(16) $ \\ln(Y) = \\alpha\\left(\\ln(\\kappa) + \\ln(Y) \\right) + (1-\\alpha)\\left(\\ln(E)+\\ln(L)\\right) $\n",
+    "\n",
+    ">(17) $ (1-\\alpha)\\ln(Y) = \\alpha\\ln(\\kappa) + (1-\\alpha)\\left(\\ln(E)+\\ln(L)\\right) $\n",
+    "\n",
+    ">(18) $ \\ln(Y) = \\left( \\frac{\\alpha}{1-\\alpha} \\right)\\ln(\\kappa) + \\ln(L) + \\ln(E) $\n",
+    "\n",
+    ">(19) $ \\ln \\left( \\frac{Y}{L} \\right) = \\left( \\frac{\\alpha}{1-\\alpha} \\right)\\ln(\\kappa) + \\ln(E) $\n",
+    "\n",
+    "These $ \\alpha/(1-\\alpha) $ terms are getting annoying:\n",
+    "\n",
+    ">(20) $ \\theta = \\frac{\\alpha}{1-\\alpha} $\n",
+    "\n",
+    ">(21) $ \\ln \\left( \\frac{Y}{L} \\right) = \\theta\\ln(\\kappa) + \\ln(E) $\n",
+    "\n",
+    "And so we define steady-state growth-path production-per-worker as:\n",
+    "\n",
+    ">(22) $ \\ln \\left( \\frac{Y}{L} \\right)^* = \\theta \\ln(\\kappa^*) =+ \\ln(E)  $ \n",
+    "\n",
+    ">(23) $ \\left(\\frac{Y}{L}\\right)^* = \\left(\\kappa^*\\right)^\\theta E $\n",
+    "\n",
+    ">(24) $ \\left(\\frac{Y}{L}\\right)^* = \\left( \\frac{s}{n+g+\\delta} \\right)^\\theta E $\n",
+    "\n",
+    ">(25) $ \\frac{d}{dt} \\left(\\frac{Y}{L}\\right)^* = g $\n",
+    "\n",
+    "Along the steady-state growth path, production per worker $ Y/L $, capital per worker $ K/L $, and the efficiency of labor $ E $ both grow at the proportional rate $ g $; the population and labor force $ L $ grows at the proportional rate $ n $; total production $ Y $ and the capital stock $ K $ grow at the proportional rate $ n + g $; and the capital-output ratio $ K/L $ is constant.\n",
+    "\n",
+    "&nbsp;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## <font color=\"880000\"> Population, Resource Scarcity, and the Efficiency of Labor </font>\n",
+    "\n",
+    "Now let's complicate the determinants of the efficiency of labor. Let's make its growth a function of the rate $ h $ at which economically useful ideas are generated, but also of the rate of population and labor force growth $ n $ because a higher population makes resources per capita scarce, as determined by an effect-of-resource scarcity parameter $ \\gamma $:\n",
+    "\n",
+    ">(26) $ \\frac{dE/dt}{E} = \\frac{d\\ln(E)}{dt} = g = h - \\frac{n}{\\gamma} $\n",
+    "\n",
+    "Thus:\n",
+    "\n",
+    ">(27) $ \\frac{d}{dt} \\left(\\frac{Y}{L}\\right)^* = 0 $ whenever $ h - \\frac{n}{\\gamma} = 0 $\n",
+    "\n",
+    ">(28) $ n^{*mal} = \\gamma h $ is the population growth rate at which $ \\frac{d}{dt} \\left(\\frac{Y}{L}\\right)^* = 0 $\n",
+    "\n",
+    "When population is growing at the rate $ n^{*mal} $, the efficiency of labor—and thus the steady-state growth-path level of production per worker $ Y/L $—is constant.\n",
+    "\n",
+    "&nbsp;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### <font color=\"000088\"> Determinants of Population and Labor Force Growth </font>\n",
+    "\n",
+    "Now let's make the rate of growth of the population and labor force depend on the level of prosperity $ y = Y/L $; on the \"subsistence\" standard of living for necessities $y^{sub} $; and also on the fraction $ 1/\\phi $ of production that is devoted to necessities, not conveniences and luxuries, and thus enters into reproductive and survival fitness:\n",
+    "\n",
+    ">(29) $ \\frac{dL/dt}{L} = \\frac{d\\ln(L)}{dt} = n = \\beta \\left(\\left(\\frac{1}{\\phi}\\right)y - y^{sub} \\right) $\n",
+    "\n",
+    "Then for population to be growing at its Malthusian rate:\n",
+    "\n",
+    ">(30) $ \\gamma h = \\beta \\left(\\left(\\frac{1}{\\phi}\\right)y - y^{sub} \\right)  $\n",
+    "\n",
+    ">(31) $ y^{*mal} = \\phi \\left[ y^{sub} + \\frac{n^{*mal}}{\\beta} \\right] $\n",
+    "\n",
+    "&nbsp;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### <font color=\"000088\"> The Full Equilibrium </font>\n",
+    "\n",
+    "Thus we have our equilibrium for the pre-industrial Malthusian economy:\n",
+    "\n",
+    "* Start with the rate $ h $ at which new economically-useful ideas are being generated and with the responsiveness $ \\beta $ of population growth to increased prosperity.\n",
+    "\n",
+    "* From those derive the Malthusian rate of population growth: $ n^{*mal} = \\gamma h $\n",
+    "\n",
+    "* Then the Malthusian standard of living is: $ y^{*mal} = \\phi \\left( y^{sub} + \\frac{ \\gamma h}{\\beta} \\right) $\n",
+    "\n",
+    "From 26, we can determine the log level $ E $ of the efficiency of labor:\n",
+    "\n",
+    ">(32) $ \\ln(E) = \\ln(H) - \\frac{\\ln(L)}{\\gamma} $\n",
+    "\n",
+    "Recall (24):\n",
+    "\n",
+    ">(24) $ y^* = \\left( \\frac{s}{n+g+\\delta} \\right)^\\theta E $\n",
+    "\n",
+    "Then:\n",
+    "\n",
+    ">(33) $ y^{*mal} = \\left( \\frac{s}{\\gamma h +\\delta} \\right)^\\theta E $\n",
+    "\n",
+    ">(34) $ \\ln(\\phi) + \\ln\\left( y^{sub} + \\frac{\\gamma h}{\\beta} \\right) = \\theta \\ln(s) - \\theta \\ln(\\gamma h +\\delta) + \\ln(E) $\n",
+    "\n",
+    ">(35) $ \\ln\\left( y^{sub} + \\frac{\\gamma h}{\\beta} \\right) = \\theta \\ln(s) - \\theta \\ln(\\gamma h +\\delta) + \\ln(H_t) - \\frac{\\ln(L_t)}{\\gamma} - \\ln(\\phi)  $\n",
+    "\n",
+    ">(36) $ \\frac{\\ln(L_t)}{\\gamma} = \\theta \\ln(s) - \\theta \\ln(\\gamma h +\\delta) + \\ln(H_t) - \\ln(\\phi) - \\ln\\left( y^{sub} + \\frac{\\gamma h}{\\beta} \\right) $\n",
+    "\n",
+    "Thus the population and labor force in the full Malthusian equilibrium will be:\n",
+    "\n",
+    ">(37) $ \\ln(L_t^{*mal}) = \\gamma \\left[ \\theta \\ln(s) - \\theta \\ln(\\gamma h +\\delta) + \\ln(H_t) - \\ln(\\phi) - \\ln\\left( y^{sub} + \\frac{\\gamma h}{\\beta} \\right) \\right] $\n",
+    "\n",
+    "And recall (31) for the full Malthusian equilibrium standard of living:\n",
+    "\n",
+    ">(31) $ y^{*mal} = \\phi \\left( y^{sub} + \\frac{\\gamma h}{\\beta} \\right) $\n",
+    "\n",
+    "Plus for the rate of population growth:\n",
+    "\n",
+    ">(28) $ n^{*mal} = \\gamma h $"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Production per worker and thus prosperity is determined by (a) true subsistence, (b) the wedge between prosperity and reproductive fitness produced by spending on conveniences and luxuries that do not impact reproductive success, and (c) the wedge above subsistence needed to generate population growth consonant with the advance of knowledge and population pressure's generation of resource scarcity.\n",
+    "\n",
+    "The level of population is:\n",
+    "\n",
+    "* raised by increases in the level of economically-useful knowledge $ H_t $\n",
+    "* raised by increases in the importance $ \\theta $ of capital accumulation for production\n",
+    "* raised by increases in the share of production saved and invested $ s $\n",
+    "* lowered by increases in the rate of depreciation $ \\delta $, in the rate of increase of knowledge $ h $, and in the parameter $ \\gamma $ capturing how much resource scarcity reduces the efficiency of labor $ E $\n",
+    "* lowered by an increase in the wedge $ \\phi $ between prosperity and subsistence created by spending on luxuries and conveniences\n",
+    "* lowered by an increase in basic biological subsistence requirements $ y^{sub} $\n",
+    "* lowered by an increase in the wedge $ \\gamma h / \\beta $ between basic subsistence and spending on necessities needed to generate population growth consonant with the advance of knowledge and population pressure's generation of resource scarcity\n",
+    "\n",
+    "\n",
+    "\n",
+    "&nbsp;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Shocks to the System...\n",
+    "\n",
+    "* A plague, pushing $ L_t $ down substantially below $ L_t^{*mal} $...\n",
+    "* A breakdown (or buildup) of law-and-order, raising incentives to save and invest, and so raising $ s $...\n",
+    "* Invaders and other raiders, raising $ \\delta $...\n",
+    "* A speed-up or slowdown in innovation, raising or lowering $ h $...\n",
+    "* Large-scale destruction of the societal web, lowering $ H $...\n",
+    "* An increased rate of death from disease or violence, raising or lowering $ Y^{sub} $..."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
