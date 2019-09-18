@@ -1,5 +1,6 @@
 # delong_classes.py
 
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -158,3 +159,24 @@ class malthusian:
             return(f'steady-state efficiency-of-labor E: {self.mal_E:.2f}') 
         else: 
             return(self.mal_κ,self.mal_n,self.mal_y,self.mal_E)
+
+
+
+class gini:
+    """
+    For a two-class distribution of income. Initialize 
+    the class with a size-of-upper-class variable
+    equal to 1/5 and a share-of-upper-class variable
+    equal to 4/5
+    """
+    
+    def __init__(self,
+                 upper_class = 1/5,       # size of upper class
+                 share = 4/5              # share of upper class
+                ):
+        self.upper_class = upper_class
+        self.share = share
+        self.gini_value = self.share - self.upper_class
+        self.income_ratio = ((self.share/self.upper_class)/
+            ((1-self.share)/(1-self.upper_class)))
+
