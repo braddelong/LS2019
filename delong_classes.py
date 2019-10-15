@@ -52,6 +52,40 @@ class solow:
     def calc_next_period_L(self):
         "Calculate the next period labor force."
 
+        # Unpack parameters (get rid of self to simplify notation)
+        n, L = self.n, self.L
+        # Apply the update rule
+        return (L*np.exp(n))
+
+    def update(self):
+        "Update the current state."
+        self.κ =  self.calc_next_period_kappa()
+        self.E =  self.calc_next_period_E()
+        self.L =  self.calc_next_period_L()
+        self.Y = self.κ**(self.α/(1-self.α))*self.E*self.L
+        self.K = self.κ * self.Y
+        self.y = self.Y/self.L
+
+    def steady_state(self):
+        "Compute the steady state value of the capital-output ratio."
+        # Unpack parameters (get rid of self to simplify notation)
+        n, s, δ, g = self.n, self.s, self.δ, self.g
+        # Compute and return steady state
+        return (s /(n + g + δ))
+
+    def generate_sequence(self, T, var = 'κ', init = True):
+        "Generate and return time series of selected variable. Variable is κ by default. Start from t=0 by default."
+        path = []
+        
+        # initialize data 
+        if init == True:
+            for para in self.initdata:
+                 setattr(self, para, self.initdata[para])
+
+        for i in range(T):
+            path.append(vars(self)[var])
+            self.update()
+        return path
 
 
 class malthusian:
