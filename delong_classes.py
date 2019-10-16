@@ -214,3 +214,67 @@ class gini:
         self.income_ratio = ((self.share/self.upper_class)/
             ((1-self.share)/(1-self.upper_class)))
 
+
+"""
+# This code cell will plot how the the economy's
+# capital-intensity 𝜅 converges to its steady-
+# state balanced-growth level 𝜅^* no matter what
+# the initial condition 𝜅_0.
+#
+# Either accept the values given below for s, n, g, 𝛿,
+# θ, 𝜅_0 and the time T you wish to calculate for,
+# or substitute your own in the relevant code lines:
+"""
+
+
+class 𝜅_convergence_graph:
+
+    """
+    # This code cell will plot how the the economy's
+    # capital-intensity 𝜅 converges to its steady-
+    # state balanced-growth level 𝜅^* no matter what
+    # the initial condition 𝜅_0.
+    #
+    # Either accept the values given below for s, n, g, 𝛿,
+    # θ, 𝜅_0 and the time T you wish to calculate for,
+    # or substitute your own in the relevant code lines:
+    """
+
+
+    def __init__(self, 𝜅_0 = 3,
+                       s = 0.20,
+                       n = 0.01,
+                       g = 0.015,
+                       𝛿 = 0.025,
+                       θ = 1,
+                       T = 200):
+        self.𝜅_0, self.s, self.n, self.g, self.𝛿, self.θ, self.T = 𝜅_0, s, n, g, 𝛿, θ, T 
+
+    def draw(self):
+        "Draw the convergence graph"
+        𝜅_0, s, n, g, 𝛿, θ, T = self.𝜅_0, self.s, self.n, self.g, self.𝛿, self.θ, self.T
+        𝜅_star = s/(n+g+𝛿)
+        𝜅_max = 2*𝜅_star
+        𝜅_min = 0.5
+
+        𝜅_star_series = [𝜅_star]
+        𝜅_series = [𝜅_0]
+
+        for t in range(T):
+            𝜅_star_series = 𝜅_star_series + [𝜅_star]
+            𝜅_series = 𝜅_series + [𝜅_star + (𝜅_series[t-1] - 𝜅_star)*np.exp(-(n+g+𝛿)/(1+θ))]
+
+
+        𝜅_convergence_df = pd.DataFrame()
+        𝜅_convergence_df['steady_state_capital_intensity'] = 𝜅_star_series
+        𝜅_convergence_df['capital_intensity'] = 𝜅_series
+
+        ax = plt.gca()
+        
+        𝜅_convergence_df.capital_intensity.plot(ax=ax)
+        𝜅_convergence_df.steady_state_capital_intensity.plot(ax=ax,
+                 title = 'Convergence of Capital-Intensity to Steady-State κ*')
+        
+        ax.set_xlabel("Date")
+        ax.set_ylabel("Capital-Intensity")
+
